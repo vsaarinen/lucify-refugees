@@ -48,8 +48,8 @@ var RefugeeMapSegment = React.createClass({
 			return (
 				<span>
 					The counts shown on hover represent the number
-					of people who have left or arrived in a country
-					since 2012.
+					of people who have left or arrived in the country
+					since 2011.
 				</span>
 			);
 		}
@@ -62,21 +62,21 @@ var RefugeeMapSegment = React.createClass({
 			return <div>
 				<p className="first">
 					Hover over countries to
-					show details. Click on a country to 
+					show details. Click on a country to
 					lock the selection.
 					{' '}{this.getCountsInstruction()}
 				</p>
 
 				<p className="last">
 					The line chart displays the total rate of
-					asylum seekers over time. Hover over the
+					underage asylum seekers over time. Hover over the
 					chart to move the map in time.
 				</p>
 			</div>
 		} else {
 			return <p className="first last">
 					The line chart displays the total rate of
-					asylum seekers over time. Hover over the
+					underage asylum seekers over time. Hover over the
 					chart to move the map in time.
 			</p>
 		}
@@ -88,35 +88,33 @@ var RefugeeMapSegment = React.createClass({
 			<div className="refugee-map-segment">
 				<Inputs>
 					<div className="lucify-container">
-						<DividedCols 
+						<DividedCols
 							first={
 								<div className="inputs__instructions">
 									<h3>Instructions</h3>
 									<p className="first">
-										The map below shows the flow of 
-										{' '}<b>asylum seekers</b>{' '}
-										to 
-										{' '}<b>European countries</b>{' '} 
+										The map below shows the flow of
+										{' '}<b>underage asylum seekers</b>{' '}
+										to
+										{' '}<b>Finland</b>{' '}
 										over time.
 									</p>
-									
-									<p className="last">
+
+									<p>
 										{this.getPeoplePerPointText()}
 									</p>
-								
+
+                  <FormRow
+										title={<div>Speed</div>}
+										input={<Slider min={1} max={50}
+											defaultValue={this.props.speed}
+											onChange={this.props.handleSpeedChange} />} />
+
 								</div>
 							}
 							second={
 								<div className="inputs__instructions">
-									
-									<FormRow
-										title={<div>Speed</div>}
-										input={<Slider min={1} max={100} 
-											defaultValue={this.props.speed}
-											onChange={this.props.handleSpeedChange} />} />
-									
 									{this.getInteractionsInstruction()}
-
 								</div>
 							} />
 					</div>
@@ -129,8 +127,8 @@ var RefugeeMapSegment = React.createClass({
 		          refugeeCountsModel={this.props.refugeeCountsModel}
 		          mapModel={this.props.mapModel} />
 
-				<RefugeeMap ref="rmap" 
-					{...this.props} 
+				<RefugeeMap ref="rmap"
+					{...this.props}
 					interactionsEnabled={this.interactionsEnabled()} />
 			</div>
 		);

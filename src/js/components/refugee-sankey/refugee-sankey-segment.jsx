@@ -19,10 +19,10 @@ var RefugeeSankeySegment = React.createClass({
 
 
 	getInitialState: function() {
-		var ret = {
+		return {
 			offsetMonths: this.getMaximumOffset(),
-			debouncedOffsetMonths: this.getMaximumOffset()}
-		return ret;
+			debouncedOffsetMonths: this.getMaximumOffset()
+    };
 	},
 
 
@@ -69,7 +69,7 @@ var RefugeeSankeySegment = React.createClass({
 	updateDebouncedOffset: function() {
 		this.setState({
 			debouncedOffsetMonths: this.state.offsetMonths
-		});	
+		});
 	},
 
 
@@ -90,18 +90,17 @@ var RefugeeSankeySegment = React.createClass({
 			<div className="refugee-sankey-segment">
 				<Inputs>
 					<div className="lucify-container">
-						<DividedCols 
+						<DividedCols
 							first={
 								<div className="inputs__instructions">
 									<h3>Country by country</h3>
 
 									<p className="first last">
 										<em>The chart below</em> shows the
-										monthly total refugees
-										originating from and seeking
-										asylum in different countries.
+										origin country of the monthly arriving
+                    underage refugees	who seek asylum in Finland.
 									</p>
-								
+
 								</div>
 							}
 
@@ -109,15 +108,15 @@ var RefugeeSankeySegment = React.createClass({
 								<div className="inputs__instructions">
 									<FormRow
 										title="Time"
-										input={<Slider 
+										input={<Slider
 											defaultValue={this.state.offsetMonths}
-											min={0} 
-											max={this.getMaximumOffset()} 
+											min={0}
+											max={this.getMaximumOffset()}
 											step={1}
 											onChange={this.monthOffsetChange} />}  />
 									<div className="refugee-sankey-segment__instructions">
 										<p className="first last">
-											Move the slider to move the 
+											Move the slider to move the
 											chart in time.
 										</p>
 										<p className="first last">
