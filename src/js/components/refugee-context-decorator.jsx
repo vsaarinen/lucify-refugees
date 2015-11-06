@@ -36,14 +36,7 @@ var bindToRefugeeMapContext = function(Component) {
 
 
       getPeoplePerPoint: function() {
-         if (isFinite(this.props.peoplePerPoint)) {
-             return this.props.peoplePerPoint;
-         }
-
-         if (lucifyUtils.isSlowDevice()) {
-            return 50;
-         }
-         return 25;
+         return 1;
       },
 
 
@@ -120,7 +113,7 @@ var bindToRefugeeMapContext = function(Component) {
       initModels: function() {
          this.refugeePointsModel = new RefugeePointsModel(this.pointList, this.props.randomStartPoint, this.props.smartSpreadEnabled);
          this.refugeeCountsModel = new RefugeeCountsModel(this.asylumData);
-         this.progress(95);  
+         this.progress(95);
          window.setTimeout(this.finishLoading, 15);
       },
 
@@ -148,8 +141,8 @@ var bindToRefugeeMapContext = function(Component) {
 
          // This will trigger also the other inits
          //
-         // We need to use setTimeout to allow for the 
-         // UI to update between parts of the loading 
+         // We need to use setTimeout to allow for the
+         // UI to update between parts of the loading
          // progress.
          //
          // For optimal results we would have to allow

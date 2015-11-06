@@ -31,7 +31,7 @@ module.exports = function(Component) {
           if (lucifyUtils.isSlowDevice()) {
               return 6;
           }
-          return 2;
+          return 4;
         },
 
 

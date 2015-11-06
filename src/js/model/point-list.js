@@ -29,7 +29,7 @@ var createFullList = function(mapModel, asylumData, peoplePerPoint, randomStartP
       }
     });
 
-    console.log("Skipped the following countries that were not on map: " 
+    console.log("Skipped the following countries that were not on map: "
         + _.keys(skipped).join(', '));
   }
 
@@ -56,12 +56,12 @@ var createFullList = function(mapModel, asylumData, peoplePerPoint, randomStartP
  * Get a speed for a new refugee in km / h;
  */
 var prepareRefugeeSpeed = function() {
-  return Math.random() * 2 + 4;
+  return Math.random() + 3;
 };
 
 
 /*
- * Get an end moment for a random refugee that 
+ * Get an end moment for a random refugee that
  * has arrived at given month (zero-based) and year
  */
 var prepareRefugeeEndMoment = function(month, year) {

@@ -33,26 +33,11 @@ var RefugeeMapSegment = React.createClass({
 
 
 	getPeoplePerPointText: function() {
-		if (this.props.peoplePerPoint == 25) {
-			return <span>
-				Each moving point on the map represents
-				25 people. That corresponds to approximately
-				one busload with every other seat taken.
-			</span>
-		};
-
-		if (this.props.peoplePerPoint == 50) {
-			return <span>
-				Each moving point on the map represents
-				50 people. That corresponds to approximately
-				one busload with no empty seats.
-			</span>
-		};
-
 		return (
 			<span>
 				Each moving point on the map corresponds
-				to {this.props.peoplePerPoint} people.
+				to {this.props.peoplePerPoint} underage
+        asylum seeker.
 			</span>
 		)
 	},
