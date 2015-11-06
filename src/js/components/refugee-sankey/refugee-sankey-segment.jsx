@@ -53,35 +53,9 @@ var RefugeeSankeySegment = React.createClass({
 		return this.getMoment().year();
 	},
 
-
-	getCountriesWithMissingData: function() {
-		var countriesWithMissingData
-			= this.props.refugeeCountsModel.getDestinationCountriesWithMissingData(this.getDebouncedMoment());
-		var length = countriesWithMissingData.length;
-		if (length > 0) {
-			var missingDataText;
-			countriesWithMissingData = _.map(countriesWithMissingData, function(countryCode) {
-				return this.props.mapModel.getFriendlyNameForCountry(countryCode);
-			}.bind(this));
-			if (length > 7) {
-				missingDataText = "Missing data from " + countriesWithMissingData.slice(0, 6).join(', ') +
-					" and " + (length - 6) + " other countries";
-			} else {
-				missingDataText = "Missing data from ";
-				if (length > 1) {
-					 missingDataText += countriesWithMissingData.slice(0, length - 1).join(', ') +	" and ";
-				}
-				missingDataText += countriesWithMissingData[length - 1];
-			}
-			return missingDataText;
-		} else {
-			return '';
-		}
-	},
-
 	monthOffsetChange: function(newOffset) {
 		this.updateMonthOffset(newOffset);
-		this.scheduleUpdateDebouncedOffset();	
+		this.scheduleUpdateDebouncedOffset();
 	},
 
 
@@ -164,16 +138,12 @@ var RefugeeSankeySegment = React.createClass({
 						}
 
 						second={
-							<div className="refugee-sankey-segment__missing-countries">
-								<p className="first last">
-									{this.getCountriesWithMissingData()}
-								</p>
-							</div>
+							<div />
 						} />
 				</div>
 				<div className="refugee-sankey-segment__sankey">
 					<div className="lucify-container">
-						<RefugeeSankey {...this.props} 
+						<RefugeeSankey {...this.props}
 							month={this.getDebouncedMoment().month()} year={this.getDebouncedMoment().year()} />
 					</div>
 				</div>

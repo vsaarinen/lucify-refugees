@@ -37,14 +37,7 @@ var RefugeeMapLineChart = React.createClass({
 				data1: '#ffffff'
 			},
 			onmouseover: this.handleMouseOverChart,
-			onclick: this.handleOnClick,
-			regions: {
-				'data1': [{
-						start: this.getDataMissingStartStamp(),
-						end: refugeeConstants.DATA_END_MOMENT.unix(),
-						style: 'dashed'
-				}]
-			}
+			onclick: this.handleOnClick
 		};
 		return ret;
 	},
@@ -67,17 +60,17 @@ var RefugeeMapLineChart = React.createClass({
 
 	updateLine: function(stamp) {
 		var chart = this.refs.c3Chart.chart;
-		
+
 		if (!this.lineSel) {
 			this.lineSel = d3.select(this.getDOMNode()).select('.c3-xgrid-line');
 		}
-		
+
 		var xval = chart.internal.x(stamp);
 
-		// we update the line directly 
-		// since the c3 api function xgrids 
+		// we update the line directly
+		// since the c3 api function xgrids
 		// triggers a redraw for the whole chart
-		
+
 		this.lineSel.select('line')
 			.attr('x1', xval)
 			.attr('x2', xval);
@@ -97,52 +90,6 @@ var RefugeeMapLineChart = React.createClass({
 		//chart.regions([
 		//	{axis: 'x', end: this.props.stamp, 'class': 'regionX'}
 		//]);
-
-		this.updateCountriesWithMissingData(stamp);
-	},
-
-
-	updateCountriesWithMissingData: function(stamp) {
-		var timestampMoment = moment.unix(stamp);
-		var res = this.countriesWithMissingDataCache[timestampMoment.year() * 12 + timestampMoment.month()];
-
-		if (res == null) {
-			var countriesWithMissingData
-				= this.props.refugeeCountsModel.getDestinationCountriesWithMissingData(timestampMoment);
-			var length = countriesWithMissingData.length;
-			if (length > 0) {
-				var missingDataText;
-				countriesWithMissingData = _.map(countriesWithMissingData, function(countryCode) {
-					return this.props.mapModel.getFriendlyNameForCountry(countryCode);
-				}.bind(this));
-				if (length > 5) {
-					missingDataText = "Missing data from " + countriesWithMissingData.slice(0, 4).join(', ') +
-						" and " + (length - 4) + " other countries";
-				} else {
-					missingDataText = "Missing data from ";
-					if (length > 1) {
-						 missingDataText += countriesWithMissingData.slice(0, length - 1).join(', ') +	" and ";
-					}
-					missingDataText += countriesWithMissingData[length - 1];
-				}
-
-				res = {
-					title: "Missing data for " + countriesWithMissingData.join(', '),
-					text: missingDataText
-				};
-
-			} else {
-				res = {
-					title: '',
-					text: ''
-				};
-			}
-			this.countriesWithMissingDataCache[timestampMoment.year() * 12 + timestampMoment.month()] = res;
-		}
-
-		this.labelSelection
-			.attr('title', res.title)
-			.text(res.text);
 	},
 
 
@@ -161,21 +108,21 @@ var RefugeeMapLineChart = React.createClass({
 		// when the touch device is sending
 		// a mouseOverEvent for a tap.
 		//
-		// We should always update on a "click" 
+		// We should always update on a "click"
 		// event to support touch devices.
-		// 
+		//
 		// However the onClick on c3.js only supports
 		// clicks on the line itself. We will listen
 		// to onClick of the parent component and use
 		// the position conveyed via onMouseOver.
-		//  
+		//
 		// To be sure that the onMouseOver runs
 		// before the onClick event, we execute
 		// the update after a small delay
-		// 
+		//
 		window.setTimeout(function() {
 			if (this.d != null) {
-				this.updatePosition(this.d);	
+				this.updatePosition(this.d);
 			}
 		}.bind(this), 100);
 	},
@@ -191,14 +138,14 @@ var RefugeeMapLineChart = React.createClass({
 		if (!this.mouseOverStamp || Date.now() - this.mouseOverStamp < 250) {
 			return;
 		}
-		
+
 		this.updatePosition(d);
 	},
 
 
 	handleMouseOver: function() {
 		if (!this.mouseOverStamp) {
-			this.mouseOverStamp = Date.now();	
+			this.mouseOverStamp = Date.now();
 		}
 	},
 
@@ -243,25 +190,7 @@ var RefugeeMapLineChart = React.createClass({
 		};
 	},
 
-
-	getDataMissingStartStamp: function() {
-		var timestamp = moment(refugeeConstants.DATA_END_MOMENT);
-		var countriesWithMissingData = this.props.refugeeCountsModel.getDestinationCountriesWithMissingData(timestamp);
-
-		while (countriesWithMissingData.length > 0) {
-			timestamp.subtract(1, 'months');
-			countriesWithMissingData = this.props.refugeeCountsModel.getDestinationCountriesWithMissingData(timestamp);
-		}
-
-		return timestamp.endOf('month').unix();
-	},
-
-
-	componentDidMount: function() {
-		this.labelSelection = d3.select(React.findDOMNode(this.refs.missingData));
-		this.countriesWithMissingDataCache = {};
-	},
-
+	componentDidMount: function() {},
 
 
 	render: function() {
@@ -275,7 +204,7 @@ var RefugeeMapLineChart = React.createClass({
 					ref='c3Chart'
 					lineStrokeWidth={2}
 					height={100}
-					spec={this.getSpec()} 
+					spec={this.getSpec()}
 					data={this.getData()} />
 			</div>
 		);

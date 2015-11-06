@@ -31,12 +31,10 @@ var RefugeeCountsModel = function(asylumData) {
   this.arrivedRefugeesToCountry = {};
   this.pairCountsByDestination = {};
   this.pairCountsByOrigin = {};
-  this.destinationCountriesWithMissingData = {};
   this.globalRefugees = [];
 
   this._initializeDataStructures(asylumData);
   this._addData(asylumData);
-  this._calculateMissingData();
 };
 
 
@@ -56,8 +54,6 @@ RefugeeCountsModel.prototype._initializeDataStructures = function(data) {
     this._ensurePairInitialized(this.pairCountsByDestination, item.ac, item.oc);
     this._ensurePairInitialized(this.pairCountsByOrigin, item.oc, item.ac);
   }.bind(this));
-
-  this.destinationCountriesWithMissingData = this._prepareYearsMonthsArray(function() { return []; });
 };
 
 
@@ -155,35 +151,6 @@ RefugeeCountsModel.prototype._enrichYearsMonthsArray = function (country) {
 RefugeeCountsModel.prototype._enrichCountsArray = function (arr) {
   for (var countryName in arr) {
     this._enrichYearsMonthsArray(arr[countryName]);
-  }
-};
-
-/*
- * Assume that "big" European countries should receive at least some asylum seekers from
- * the most distressed origin countries: Syria, Iraq. If there are no asylum seekers
- * from these countries, assume the data is (at least partially) missing for that month.
- */
-RefugeeCountsModel.prototype._calculateMissingData = function() {
-  var destinationCountriesToCheck = [
-    "AUT", "BEL", "BGR", "CHE", "DEU", "DNK", "ESP", "FIN",
-    "FRA", "GBR", "GRC", "HUN", "ITA", "NOR", "NLD", "SWE"
-  ];
-  var originCountriesToCheck = ["SYR", "IRQ"];
-  var year = 3; // only check 2015
-
-  for (var month = 0; month < 12; month++) {
-    _.forEach(destinationCountriesToCheck, function(destinationCountry) {
-      var countryData = this.pairCountsByDestination[destinationCountry];
-      var isMissingData = false;
-      _.forEach(originCountriesToCheck, function(originCountry) {
-        if (!countryData[originCountry] || countryData[originCountry][year][month].count === 0) {
-          isMissingData = true;
-        }
-      });
-      if (isMissingData) {
-        this.destinationCountriesWithMissingData[year][month].push(destinationCountry);
-      }
-    }.bind(this));
   }
 };
 
@@ -323,14 +290,6 @@ RefugeeCountsModel.prototype.getOriginCountsByDestinationCountries = function(or
 RefugeeCountsModel.prototype.getDestinationCountries = function() {
   return _.keys(this.destinationCountries);
 };
-
-
-RefugeeCountsModel.prototype.getDestinationCountriesWithMissingData = function(timestamp) {
-  var yearIndex = timestamp.year() - refugeeConstants.DATA_START_YEAR;
-  var monthIndex = timestamp.month();
-  return this.destinationCountriesWithMissingData[yearIndex][monthIndex];
-};
-
 
 
 module.exports = RefugeeCountsModel;

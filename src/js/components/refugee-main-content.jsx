@@ -6,21 +6,15 @@ var HideableContainer = require('lucify-commons/src/js/components/hideable-conta
 var Decorator = require('./refugee-context-decorator.jsx');
 var RefugeeMapSegment = require('./refugee-map/refugee-map-segment.jsx');
 var RefugeeSankeySegment = require('./refugee-sankey/refugee-sankey-segment.jsx');
-var RefugeeSoccerSegment = require('./refugee-soccer/refugee-soccer-segment.jsx');
 
 var Loading = require('lucify-commons/src/js/components/loading.jsx');
 
-
-
-
 var RefugeeMainContent = React.createClass({
-
 
 	getDefaultProps: function() {
 		return {
 			mapEnabled: true,
-			sankeyEnabled: true,
-			soccerEnabled: true
+			sankeyEnabled: true
 		};
 	},
 
@@ -40,14 +34,6 @@ var RefugeeMainContent = React.createClass({
 	getSankeySegment: function() {
 		if (this.props.loaded && this.props.sankeyEnabled) {
 			return <RefugeeSankeySegment {...this.props} />
-		}
-		return <div />;
-	},
-
-
-	getSoccerSegment: function() {
-		if (this.props.loaded && this.props.soccerEnabled) {
-			return <RefugeeSoccerSegment {...this.props} />
 		}
 		return <div />;
 	},
@@ -79,7 +65,6 @@ var RefugeeMainContent = React.createClass({
 				{this.getLoadingSegment()}
 				{this.getMapSegment()}
 				{this.getSankeySegment()}
-				{this.getSoccerSegment()}
 			</div>
 		);
 
