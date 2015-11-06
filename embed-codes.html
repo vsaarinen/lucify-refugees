@@ -1,0 +1,116 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Embed Codes</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Montserrat:400,700' 
+  rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+
+
+<body>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-65400709-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+<style>
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+}
+
+.embed-code {
+  width: 100%;
+  color: #18b7b7;
+  border: 2px solid #cdcccc;
+  border-radius: 5px;
+  font-size: 1.0rem;
+  padding: 0.6rem;
+  box-sizing: border-box;
+  margin-bottom: 2rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+h3 {
+	font-family: 'Montserrat', sans-serif;
+	margin-bottom: 0.4rem;
+	font-size: 0.9rem;
+}
+
+.main {
+	padding: 1.5rem;
+	max-width: 60rem;
+}
+
+/*  font-family: 'Montserrat', sans-serif; */
+
+
+
+</style>
+
+<div class="main">
+
+<h2>Embed codes</h2>
+
+<h3>1. Recommended</h3>
+<textarea class="embed-code">&lt;script id&#x3D;&quot;lucify-Vk1BOyUfg&quot; src&#x3D;&quot;http://localhost:3000/embed.js&quot;&gt;&lt;/script&gt;&lt;script&gt;lucifyEmbed(&quot;lucify-Vk1BOyUfg&quot;, &quot;http://localhost:3000/&quot;)&lt;/script&gt;</textarea>
+
+<h3>2. IFrame tag with remote auto-resize script</h3>
+<textarea class="embed-code" rows="3">&lt;iframe id&#x3D;&#x27;lucify-Vk1BOyUfg&#x27; src&#x3D;&#x27;http://localhost:3000/&#x27; width&#x3D;&#x27;100%&#x27; scrolling&#x3D;&#x27;no&#x27; frameborder&#x3D;&#x27;0&#x27;&gt;&lt;/iframe&gt;&lt;script src&#x3D;&#x27;http://localhost:3000/resize.js&#x27;&gt;&lt;/script&gt;&lt;script&gt;iFrameResize({log:false}, &quot;#lucify-Vk1BOyUfg&quot;);&lt;/script&gt;</textarea>
+
+<h3>3. IFrame tag with inline auto-resize script</h3>
+<textarea class="embed-code" rows="10">&lt;iframe id&#x3D;&#x27;lucify-Vk1BOyUfg&#x27; src&#x3D;&#x27;http://localhost:3000/&#x27; width&#x3D;&#x27;100%&#x27; scrolling&#x3D;&#x27;no&#x27; frameborder&#x3D;&#x27;0&#x27;&gt;&lt;/iframe&gt;&lt;script&gt;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a&#x3D;typeof require&#x3D;&#x3D;&quot;function&quot;&amp;&amp;require;if(!u&amp;&amp;a)return a(o,!0);if(i)return i(o,!0);var f&#x3D;new Error(&quot;Cannot find module &quot;+o+&quot;&quot;);throw f.code&#x3D;&quot;MODULE_NOT_FOUND&quot;,f}var l&#x3D;n[o]&#x3D;{exports:{}};t[o][0].call(l.exports,function(e){var n&#x3D;t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i&#x3D;typeof require&#x3D;&#x3D;&quot;function&quot;&amp;&amp;require;for(var o&#x3D;0;o&lt;r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){&quot;use strict&quot;;(function(window){&quot;use strict&quot;;var count&#x3D;0,logEnabled&#x3D;false,msgHeader&#x3D;&quot;message&quot;,msgHeaderLen&#x3D;msgHeader.length,msgId&#x3D;&quot;[iFrameSizer]&quot;,msgIdLen&#x3D;msgId.length,pagePosition&#x3D;null,requestAnimationFrame&#x3D;window.requestAnimationFrame,resetRequiredMethods&#x3D;{max:1,scroll:1,bodyScroll:1,documentElementScroll:1},settings&#x3D;{},timer&#x3D;null,defaults&#x3D;{autoResize:true,bodyBackground:null,bodyMargin:null,bodyMarginV1:8,bodyPadding:null,checkOrigin:true,enableInPageLinks:false,enablePublicMethods:false,heightCalculationMethod:&quot;offset&quot;,interval:32,log:false,maxHeight:Infinity,maxWidth:Infinity,minHeight:0,minWidth:0,resizeFrom:&quot;parent&quot;,scrolling:false,sizeHeight:true,sizeWidth:false,tolerance:0,closedCallback:function closedCallback(){},initCallback:function initCallback(){},messageCallback:function messageCallback(){},resizedCallback:function resizedCallback(){},scrollCallback:function scrollCallback(){return true}};function addEventListener(obj,evt,func){if(&quot;addEventListener&quot;in window){obj.addEventListener(evt,func,false)}else if(&quot;attachEvent&quot;in window){obj.attachEvent(&quot;on&quot;+evt,func)}}function setupRequestAnimationFrame(){var vendors&#x3D;[&quot;moz&quot;,&quot;webkit&quot;,&quot;o&quot;,&quot;ms&quot;],x;for(x&#x3D;0;x&lt;vendors.length&amp;&amp;!requestAnimationFrame;x+&#x3D;1){requestAnimationFrame&#x3D;window[vendors[x]+&quot;RequestAnimationFrame&quot;]}if(!requestAnimationFrame){log(&quot; RequestAnimationFrame not supported&quot;)}}function getMyID(){var retStr&#x3D;&quot;Host page&quot;;if(window.top!&#x3D;&#x3D;window.self){if(window.parentIFrame){retStr&#x3D;window.parentIFrame.getId()}else{retStr&#x3D;&quot;Nested host page&quot;}}return retStr}function formatLogMsg(msg){return msgId+&quot;[&quot;+getMyID()+&quot;]&quot;+msg}function log(msg){if(logEnabled&amp;&amp;&quot;object&quot;&#x3D;&#x3D;&#x3D;typeof window.console){console.log(formatLogMsg(msg))}}function warn(msg){if(&quot;object&quot;&#x3D;&#x3D;&#x3D;typeof window.console){console.warn(formatLogMsg(msg))}}function iFrameListener(event){function resizeIFrame(){function resize(){setSize(messageData);setPagePosition();settings[iframeId].resizedCallback(messageData)}ensureInRange(&quot;Height&quot;);ensureInRange(&quot;Width&quot;);syncResize(resize,messageData,&quot;resetPage&quot;)}function closeIFrame(iframe){var iframeId&#x3D;iframe.id;log(&quot; Removing iFrame: &quot;+iframeId);iframe.parentNode.removeChild(iframe);settings[iframeId].closedCallback(iframeId);delete settings[iframeId];log(&quot; --&quot;)}function processMsg(){var data&#x3D;msg.substr(msgIdLen).split(&quot;:&quot;);return{iframe:document.getElementById(data[0]),id:data[0],height:data[1],width:data[2],type:data[3]}}function ensureInRange(Dimension){var max&#x3D;Number(settings[iframeId][&quot;max&quot;+Dimension]),min&#x3D;Number(settings[iframeId][&quot;min&quot;+Dimension]),dimension&#x3D;Dimension.toLowerCase(),size&#x3D;Number(messageData[dimension]);if(min&gt;max){throw new Error(&quot;Value for min&quot;+Dimension+&quot; can not be greater than max&quot;+Dimension)}log(&quot; Checking &quot;+dimension+&quot; is in range &quot;+min+&quot;-&quot;+max);if(size&lt;min){size&#x3D;min;log(&quot; Set &quot;+dimension+&quot; to min value&quot;)}if(size&gt;max){size&#x3D;max;log(&quot; Set &quot;+dimension+&quot; to max value&quot;)}messageData[dimension]&#x3D;&quot;&quot;+size}function isMessageFromIFrame(){function checkAllowedOrigin(){function checkList(){log(&quot; Checking connection is from allowed list of origins: &quot;+checkOrigin);var i;for(i&#x3D;0;i&lt;checkOrigin.length;i++){if(checkOrigin[i]&#x3D;&#x3D;&#x3D;origin){return true}}return false}function checkSingle(){log(&quot; Checking connection is from: &quot;+remoteHost);return origin&#x3D;&#x3D;&#x3D;remoteHost}return checkOrigin.constructor&#x3D;&#x3D;&#x3D;Array?checkList():checkSingle()}var origin&#x3D;event.origin,checkOrigin&#x3D;settings[iframeId].checkOrigin,remoteHost&#x3D;messageData.iframe.src.split(&quot;/&quot;).slice(0,3).join(&quot;/&quot;);if(checkOrigin){if(&quot;&quot;+origin!&#x3D;&#x3D;&quot;null&quot;&amp;&amp;!checkAllowedOrigin()){throw new Error(&quot;Unexpected message received from: &quot;+origin+&quot; for &quot;+messageData.iframe.id+&quot;. Message was: &quot;+event.data+&quot;. This error can be disabled by setting the checkOrigin: false option or by providing of array of trusted domains.&quot;)}}return true}function isMessageForUs(){return msgId&#x3D;&#x3D;&#x3D;(&quot;&quot;+msg).substr(0,msgIdLen)}function isMessageFromMetaParent(){var retCode&#x3D;messageData.type in{&quot;true&quot;:1,&quot;false&quot;:1,undefined:1};if(retCode){log(&quot; Ignoring init message from meta parent page&quot;)}return retCode}function getMsgBody(offset){return msg.substr(msg.indexOf(&quot;:&quot;)+msgHeaderLen+offset)}function forwardMsgFromIFrame(msgBody){log(&quot; MessageCallback passed: {iframe: &quot;+messageData.iframe.id+&quot;, message: &quot;+msgBody+&quot;}&quot;);settings[iframeId].messageCallback({iframe:messageData.iframe,message:JSON.parse(msgBody)});log(&quot; --&quot;)}function checkIFrameExists(){if(null&#x3D;&#x3D;&#x3D;messageData.iframe){warn(&quot; IFrame (&quot;+messageData.id+&quot;) not found&quot;);return false}return true}function getElementPosition(target){var iFramePosition&#x3D;target.getBoundingClientRect();getPagePosition();return{x:parseInt(iFramePosition.left,10)+parseInt(pagePosition.x,10),y:parseInt(iFramePosition.top,10)+parseInt(pagePosition.y,10)}}function scrollRequestFromChild(addOffset){function reposition(){pagePosition&#x3D;newPosition;scrollTo();log(&quot; --&quot;)}function calcOffset(){return{x:Number(messageData.width)+offset.x,y:Number(messageData.height)+offset.y}}var offset&#x3D;addOffset?getElementPosition(messageData.iframe):{x:0,y:0},newPosition&#x3D;calcOffset();log(&quot; Reposition requested from iFrame (offset x:&quot;+offset.x+&quot; y:&quot;+offset.y+&quot;)&quot;);if(window.top!&#x3D;&#x3D;window.self){if(window.parentIFrame){if(addOffset){window.parentIFrame.scrollToOffset(newPosition.x,newPosition.y)}else{window.parentIFrame.scrollTo(messageData.width,messageData.height)}}else{warn(&quot; Unable to scroll to requested position, window.parentIFrame not found&quot;)}}else{reposition()}}function scrollTo(){if(false!&#x3D;&#x3D;settings[iframeId].scrollCallback(pagePosition)){setPagePosition()}}function findTarget(location){function jumpToTarget(target){var jumpPosition&#x3D;getElementPosition(target);log(&quot; Moving to in page link (#&quot;+hash+&quot;) at x: &quot;+jumpPosition.x+&quot; y: &quot;+jumpPosition.y);pagePosition&#x3D;{x:jumpPosition.x,y:jumpPosition.y};scrollTo();log(&quot; --&quot;)}var hash&#x3D;location.split(&quot;#&quot;)[1]||&quot;&quot;,hashData&#x3D;decodeURIComponent(hash),target&#x3D;document.getElementById(hashData)||document.getElementsByName(hashData)[0];if(window.top!&#x3D;&#x3D;window.self){if(window.parentIFrame){window.parentIFrame.moveToAnchor(hash)}else{log(&quot; In page link #&quot;+hash+&quot; not found and window.parentIFrame not found&quot;)}}else if(target){jumpToTarget(target)}else{log(&quot; In page link #&quot;+hash+&quot; not found&quot;)}}function actionMsg(){switch(messageData.type){case&quot;close&quot;:closeIFrame(messageData.iframe);break;case&quot;message&quot;:forwardMsgFromIFrame(getMsgBody(6));break;case&quot;scrollTo&quot;:scrollRequestFromChild(false);break;case&quot;scrollToOffset&quot;:scrollRequestFromChild(true);break;case&quot;inPageLink&quot;:findTarget(getMsgBody(9));break;case&quot;reset&quot;:resetIFrame(messageData);break;case&quot;init&quot;:resizeIFrame();settings[iframeId].initCallback(messageData.iframe);break;default:resizeIFrame()}}function hasSettings(iframeId){var retBool&#x3D;true;if(!settings[iframeId]){retBool&#x3D;false;warn(messageData.type+&quot; No settings for &quot;+iframeId+&quot;. Message was: &quot;+msg)}return retBool}var msg&#x3D;event.data,messageData&#x3D;{},iframeId&#x3D;null;if(isMessageForUs()){messageData&#x3D;processMsg();iframeId&#x3D;messageData.id;if(!isMessageFromMetaParent()&amp;&amp;hasSettings(iframeId)){logEnabled&#x3D;settings[iframeId].log;log(&quot; Received: &quot;+msg);if(checkIFrameExists()&amp;&amp;isMessageFromIFrame()){settings[iframeId].firstRun&#x3D;false;actionMsg()}}}}function getPagePosition(){if(null&#x3D;&#x3D;&#x3D;pagePosition){pagePosition&#x3D;{x:window.pageXOffset!&#x3D;&#x3D;undefined?window.pageXOffset:document.documentElement.scrollLeft,y:window.pageYOffset!&#x3D;&#x3D;undefined?window.pageYOffset:document.documentElement.scrollTop};log(&quot; Get page position: &quot;+pagePosition.x+&quot;,&quot;+pagePosition.y)}}function setPagePosition(){if(null!&#x3D;&#x3D;pagePosition){window.scrollTo(pagePosition.x,pagePosition.y);log(&quot; Set page position: &quot;+pagePosition.x+&quot;,&quot;+pagePosition.y);pagePosition&#x3D;null}}function resetIFrame(messageData){function reset(){setSize(messageData);trigger(&quot;reset&quot;,&quot;reset&quot;,messageData.iframe,messageData.id)}log(&quot; Size reset requested by &quot;+(&quot;init&quot;&#x3D;&#x3D;&#x3D;messageData.type?&quot;host page&quot;:&quot;iFrame&quot;));getPagePosition();syncResize(reset,messageData,&quot;init&quot;)}function setSize(messageData){function setDimension(dimension){messageData.iframe.style[dimension]&#x3D;messageData[dimension]+&quot;px&quot;;log(&quot; IFrame (&quot;+iframeId+&quot;) &quot;+dimension+&quot; set to &quot;+messageData[dimension]+&quot;px&quot;)}var iframeId&#x3D;messageData.iframe.id;if(settings[iframeId].sizeHeight){setDimension(&quot;height&quot;)}if(settings[iframeId].sizeWidth){setDimension(&quot;width&quot;)}}function syncResize(func,messageData,doNotSync){if(doNotSync!&#x3D;&#x3D;messageData.type&amp;&amp;requestAnimationFrame){log(&quot; Requesting animation frame&quot;);requestAnimationFrame(func)}else{func()}}function trigger(calleeMsg,msg,iframe,id){if(iframe&amp;&amp;iframe.contentWindow){log(&quot;[&quot;+calleeMsg+&quot;] Sending msg to iframe (&quot;+msg+&quot;)&quot;);iframe.contentWindow.postMessage(msgId+msg,&quot;*&quot;)}else{warn(&quot;[&quot;+calleeMsg+&quot;] IFrame not found&quot;);if(settings[id]){delete settings[id]}}}function setupIFrame(options){function setLimits(){function addStyle(style){if(Infinity!&#x3D;&#x3D;settings[iframeId][style]&amp;&amp;0!&#x3D;&#x3D;settings[iframeId][style]){iframe.style[style]&#x3D;settings[iframeId][style]+&quot;px&quot;;log(&quot; Set &quot;+style+&quot; &#x3D; &quot;+settings[iframeId][style]+&quot;px&quot;)}}addStyle(&quot;maxHeight&quot;);addStyle(&quot;minHeight&quot;);addStyle(&quot;maxWidth&quot;);addStyle(&quot;minWidth&quot;)}function ensureHasId(iframeId){if(&quot;&quot;&#x3D;&#x3D;&#x3D;iframeId){iframe.id&#x3D;iframeId&#x3D;&quot;iFrameResizer&quot;+count++;logEnabled&#x3D;(options||{}).log;log(&quot; Added missing iframe ID: &quot;+iframeId+&quot; (&quot;+iframe.src+&quot;)&quot;)}return iframeId}function setScrolling(){log(&quot; IFrame scrolling &quot;+(settings[iframeId].scrolling?&quot;enabled&quot;:&quot;disabled&quot;)+&quot; for &quot;+iframeId);iframe.style.overflow&#x3D;false&#x3D;&#x3D;&#x3D;settings[iframeId].scrolling?&quot;hidden&quot;:&quot;auto&quot;;iframe.scrolling&#x3D;false&#x3D;&#x3D;&#x3D;settings[iframeId].scrolling?&quot;no&quot;:&quot;yes&quot;}function setupBodyMarginValues(){if(&quot;number&quot;&#x3D;&#x3D;&#x3D;typeof settings[iframeId].bodyMargin||&quot;0&quot;&#x3D;&#x3D;&#x3D;settings[iframeId].bodyMargin){settings[iframeId].bodyMarginV1&#x3D;settings[iframeId].bodyMargin;settings[iframeId].bodyMargin&#x3D;&quot;&quot;+settings[iframeId].bodyMargin+&quot;px&quot;}}function createOutgoingMsg(){return iframeId+&quot;:&quot;+settings[iframeId].bodyMarginV1+&quot;:&quot;+settings[iframeId].sizeWidth+&quot;:&quot;+settings[iframeId].log+&quot;:&quot;+settings[iframeId].interval+&quot;:&quot;+settings[iframeId].enablePublicMethods+&quot;:&quot;+settings[iframeId].autoResize+&quot;:&quot;+settings[iframeId].bodyMargin+&quot;:&quot;+settings[iframeId].heightCalculationMethod+&quot;:&quot;+settings[iframeId].bodyBackground+&quot;:&quot;+settings[iframeId].bodyPadding+&quot;:&quot;+settings[iframeId].tolerance+&quot;:&quot;+settings[iframeId].enableInPageLinks+&quot;:&quot;+settings[iframeId].resizeFrom}function init(msg){addEventListener(iframe,&quot;load&quot;,function(){var fr&#x3D;settings[iframeId].firstRun;trigger(&quot;iFrame.onload&quot;,msg,iframe);if(!fr&amp;&amp;settings[iframeId].heightCalculationMethod in resetRequiredMethods){resetIFrame({iframe:iframe,height:0,width:0,type:&quot;init&quot;})}});trigger(&quot;init&quot;,msg,iframe)}function checkOptions(options){if(&quot;object&quot;!&#x3D;&#x3D;typeof options){throw new TypeError(&quot;Options is not an object.&quot;)}}function processOptions(options){options&#x3D;options||{};settings[iframeId]&#x3D;{firstRun:true};checkOptions(options);for(var option in defaults){if(defaults.hasOwnProperty(option)){settings[iframeId][option]&#x3D;options.hasOwnProperty(option)?options[option]:defaults[option]}}logEnabled&#x3D;settings[iframeId].log}var iframe&#x3D;this,iframeId&#x3D;ensureHasId(iframe.id);processOptions(options);setScrolling();setLimits();setupBodyMarginValues();init(createOutgoingMsg())}function throttle(fn,time){if(null&#x3D;&#x3D;&#x3D;timer){timer&#x3D;setTimeout(function(){timer&#x3D;null;fn()},time)}}function winResize(){function isIFrameResizeEnabled(iframeId){return&quot;parent&quot;&#x3D;&#x3D;&#x3D;settings[iframeId].resizeFrom&amp;&amp;settings[iframeId].autoResize&amp;&amp;!settings[iframeId].firstRun}throttle(function(){for(var iframeId in settings){if(isIFrameResizeEnabled(iframeId)){trigger(&quot;Window resize&quot;,&quot;resize&quot;,document.getElementById(iframeId),iframeId)}}},66)}function factory(){function init(element,options){if(!element.tagName){throw new TypeError(&quot;Object is not a valid DOM element&quot;)}else if(&quot;IFRAME&quot;!&#x3D;&#x3D;element.tagName.toUpperCase()){throw new TypeError(&quot;Expected &lt;IFRAME&gt; tag, found &lt;&quot;+element.tagName+&quot;&gt;.&quot;)}else{setupIFrame.call(element,options)}}setupRequestAnimationFrame();addEventListener(window,&quot;message&quot;,iFrameListener);addEventListener(window,&quot;resize&quot;,winResize);return function iFrameResizeF(options,target){switch(typeof target){case&quot;undefined&quot;:case&quot;string&quot;:Array.prototype.forEach.call(document.querySelectorAll(target||&quot;iframe&quot;),function(element){init(element,options)});break;case&quot;object&quot;:init(target,options);break;default:throw new TypeError(&quot;Unexpected data type (&quot;+typeof target+&quot;).&quot;)}}}function createJQueryPublicMethod($){$.fn.iFrameResize&#x3D;function $iFrameResizeF(options){return this.filter(&quot;iframe&quot;).each(function(index,element){setupIFrame.call(element,options)}).end()}}window.iFrameResize&#x3D;factory()})(window||{})},{}]},{},[1]);iFrameResize({log:false}, &#x27;#lucify-Vk1BOyUfg&#x27;);&lt;/script&gt;</textarea>
+
+<p>
+  All embed code types will embed the 
+  Lucify component within an iFrame.
+</p>
+
+<p>Use Lucify embeds at your own risk.</p>
+
+<p>
+	To inject an embed for testing with Chrome's 
+	web developer tools:
+	<ol>
+		<li>
+			Insert the iFrame part of the embed code (3)
+			into the desired location in the page.
+		</li>
+		<li>
+			Copy-paste the script part of embed code (3)
+			into the console.
+		</li>
+	</ol>
+</p>
+
+<p>Resizing is based on <a href="https://github.com/davidjbradshaw/iframe-resizer">iframe-resizer</a>.</p>
+
+<p>Contact info@lucify.com if you have any question or require assistance.</p>
+
+</div>
+
+
+
+
+
+</body>
+
+</html>
