@@ -41,7 +41,7 @@ module.exports = function(Component) {
             startStamp: moment([RefugeeConstants.DATA_START_YEAR, RefugeeConstants.DATA_START_MONTH, 1]).unix()
           };
         },
-         
+
 
         componentDidMount: function() {
           this.blockPlay = false;
@@ -69,7 +69,7 @@ module.exports = function(Component) {
                 var increment = (60 * 60 * this.state.speed);
                 var newStamp = this.stamp + increment;
                 this.updateStamp(newStamp);
-                requestAnimationFrame(this.play);    
+                requestAnimationFrame(this.play);
               }
             }
         },
@@ -83,11 +83,11 @@ module.exports = function(Component) {
           // trigger the relatively costly render
           // operation for the whole subtree
           //
-          // for the purposes of the animation it is 
+          // for the purposes of the animation it is
           // a bit costly even when shouldComponentUpdate
           // is implemented
           //
-          // thus the stamp is updated by calling a special 
+          // thus the stamp is updated by calling a special
           // updateForStamp() method for all relevant
           // subcomponents
           //
@@ -108,9 +108,9 @@ module.exports = function(Component) {
 
 
         render: function() {
-            return <Component 
+            return <Component
                ref='comp'
-               {...this.state} 
+               {...this.state}
                handleSpeedChange={this.handleSpeedChange}
                handleStampChange={this.handleStampChange}
                addStampListener={this.addStampListener}
@@ -122,5 +122,3 @@ module.exports = function(Component) {
    return RefugeePlayContextDecorator;
 
 }
-
- 
