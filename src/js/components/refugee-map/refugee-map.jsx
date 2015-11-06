@@ -41,7 +41,7 @@ var RefugeeMap = React.createClass({
     return this.props.height;
   },
 
-  
+
   componentWillUpdate: function(nextProps, nextState) {
       if (this.props.width !== nextProps.width) {
         this._projection = null;
@@ -62,13 +62,13 @@ var RefugeeMap = React.createClass({
 
   getAzimuthalEqualAreaProjection: function() {
       var lo = 22.2206322; // x
-      var la = 34.0485818; // y
+      var la = 25.0485818; // y
 
       return d3.geo.azimuthalEqualArea()
         //.clipAngle(180 - 1e-3)
         .center([0, la])
         .rotate([-lo, 0])
-        .scale(this.getWidth()*0.85)
+        .scale(this.getWidth()*0.6)
         .translate([this.getWidth() / 2, this.getHeight() / 2])
         .precision(1);
   },
@@ -117,9 +117,9 @@ var RefugeeMap = React.createClass({
       this.stamp = stamp;
 
       if (this.refs.pointsLayer != null) {
-        this.refs.pointsLayer.updateForStamp(stamp); 
-      } 
-      
+        this.refs.pointsLayer.updateForStamp(stamp);
+      }
+
       if (this.refs.frameRateLayer != null) {
         this.refs.frameRateLayer.update();
       }
@@ -131,13 +131,13 @@ var RefugeeMap = React.createClass({
       if (this.refs.countBars != null) {
         this.refs.countBars.updateForStamp(stamp);
       }
-        
+
       if (this.refs.countsLayer != null) {
         this.refs.countsLayer.updateForStamp(stamp);
       }
-        
+
       if (this.interactionsEnabled() && this.props.refugeeCountsModel != null) {
-        this.updateHighlight(this.getHighlightedCountry());  
+        this.updateHighlight(this.getHighlightedCountry());
       }
   },
 
@@ -155,7 +155,7 @@ var RefugeeMap = React.createClass({
   getFirstBordersLayer: function() {
     if (this.interactionsEnabled()) {
        return (
-          <BordersLayer 
+          <BordersLayer
             ref="bordersLayer"
             updatesEnabled={true}
             enableOverlay={true}
@@ -176,7 +176,7 @@ var RefugeeMap = React.createClass({
              {...this.getStandardLayerParams()}
              subunitClass="subunit-invisible"
              onMouseOver={this.handleMouseOver}
-             onMouseLeave={this.handleMouseLeave} 
+             onMouseLeave={this.handleMouseLeave}
              onClick={this.handleMapClick} />
     }
   },
@@ -198,7 +198,7 @@ var RefugeeMap = React.createClass({
           ref="countsLayer"
           {...this.getStandardLayerParams()}
           {...this.getHighlightLayerParams()}
-          refugeeCountsModel={this.props.refugeeCountsModel} />      
+          refugeeCountsModel={this.props.refugeeCountsModel} />
     }
   },
 
@@ -208,8 +208,8 @@ var RefugeeMap = React.createClass({
         return null;
     }
     return (
-      <div 
-        className="refugee-map__overlay-layer" 
+      <div
+        className="refugee-map__overlay-layer"
         style={{width: this.getWidth(), height: this.getHeight()}}>
       </div>
     );
@@ -237,10 +237,10 @@ var RefugeeMap = React.createClass({
 
   render: function() {
 
-    if (!this.props.refugeeCountsModel 
+    if (!this.props.refugeeCountsModel
       || !this.props.refugeePointsModel
       || !this.props.mapModel) {
-    
+
       return (
         <div className="refugee-map"
           style={{width: this.getWidth(), height: this.getHeight()}}>
@@ -252,7 +252,7 @@ var RefugeeMap = React.createClass({
     return (
       <div className="refugee-map"
         style={{width: this.getWidth(), height: this.getHeight()}}>
-        
+
         {this.getFirstBordersLayer()}
 
         {this.getCountBarsLayer()}
@@ -265,7 +265,7 @@ var RefugeeMap = React.createClass({
            {...this.getStandardLayerParams()}
            highlightedCountry={this.getHighlightedCountry()}
            refugeePointsModel={this.props.refugeePointsModel} />
-        
+
         {this.getSecondBordersLayer()}
 
         {this.getFrameRateLayer()}
@@ -279,4 +279,3 @@ var RefugeeMap = React.createClass({
 
 
 module.exports = RefugeeMap;
-    
