@@ -1,7 +1,6 @@
 #!/bin/bash
 
 rm -f temp/detailed-map.json
-#rm -f temp/data-assets/labels.json
 
 ogr2ogr \
   -f GeoJSON \
@@ -19,21 +18,5 @@ node_modules/.bin/topojson \
   temp/map.json
 
 
-### Process UNHCR data
-src/scripts/prepare-asylum-data.rb
-
-# we are not using the labels for anything
-
-#ogr2ogr \
-#  -f GeoJSON \
-#  -where "scalerank IN (0)" \
-#  data/labels.json \
-#  data/ne_10m_admin_0_label_points.shp
-
-
-# this was just for development
-
-#ogr2ogr \
-#  -f GeoJSON \
-#  data/fullmap.json \
-#  data/ne_10m_admin_0_countries.shp
+### Process child asylum data
+src/scripts/prepare-child-asylum-data.rb
