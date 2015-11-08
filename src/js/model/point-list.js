@@ -56,7 +56,7 @@ var createFullList = function(mapModel, asylumData, peoplePerPoint, randomStartP
  * Get a speed for a new refugee in km / h;
  */
 var prepareRefugeeSpeed = function() {
-  return Math.random() + 3;
+  return Math.random()*2 + 4;
 };
 
 
