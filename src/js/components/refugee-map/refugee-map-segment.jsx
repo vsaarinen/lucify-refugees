@@ -36,8 +36,7 @@ var RefugeeMapSegment = React.createClass({
 		return (
 			<span>
 				Each moving point on the map corresponds
-				to {this.props.peoplePerPoint} underage
-        asylum seeker.
+				to {this.props.peoplePerPoint} minor.
 			</span>
 		)
 	},
@@ -68,16 +67,16 @@ var RefugeeMapSegment = React.createClass({
 				</p>
 
 				<p className="last">
-					The line chart displays the total rate of
-					underage asylum seekers over time. Hover over the
-					chart to move the map in time.
+					The line chart displays the total rate of underage
+					asylum seekers arriving in Finland over time. Hover
+					over the chart to move the map in time.
 				</p>
 			</div>
 		} else {
 			return <p className="first last">
-					The line chart displays the total rate of
-					underage asylum seekers over time. Hover over the
-					chart to move the map in time.
+					The line chart displays the total rate of underage
+					asylum seekers arriving in Finland over time. Hover
+					over the chart to move the map in time.
 			</p>
 		}
 	},
@@ -95,7 +94,7 @@ var RefugeeMapSegment = React.createClass({
 									<p className="first">
 										The map below shows the flow of
 										{' '}<b>underage asylum seekers</b>{' '}
-										to
+										travelling alone to
 										{' '}<b>Finland</b>{' '}
 										over time.
 									</p>

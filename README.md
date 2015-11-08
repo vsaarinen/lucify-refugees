@@ -1,4 +1,4 @@
-# The flow of underage asylum seekers to Finland
+# The flow of underage asylum seekers travelling alone to Finland
 
 A visualization of the flow of underage asylum seekers to Finland from 2011 onwards. Based on our [visualization of asylum applicants in Europe](https://github.com/lucified/lucify-refugees). See it in action [here](http://underage-asylum.saarinen.info/).
 
@@ -29,7 +29,7 @@ npm install gulpjs/gulp-cli#4.0 -g
 
 ## Data source
 
-To be confirmed. Based on data from a doctoral dissertation.
+The visualization is based on data from the [Finnish Immigration Service](http://www.migri.fi/tietoa_virastosta/tilastot/turvapaikka-_ja_pakolaistilastot).
 
 ## Authors
 
