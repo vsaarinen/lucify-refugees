@@ -61,7 +61,7 @@ var RefugeeMainContent = React.createClass({
 
 		return (
 			<div className="refugee-main-content"
-				style={{minHeight: 2000}}>
+				style={{minHeight: 1500}}>
 				{this.getLoadingSegment()}
 				{this.getMapSegment()}
 				{this.getSankeySegment()}
